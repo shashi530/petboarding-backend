@@ -8,13 +8,13 @@ const connect = require("./config/connect")
 
 const listsSchema = new mongoose.Schema(
     {
-        id : {type: Number, required: true, unique: true},
+        id: {type: Number, required: true, unique: true },
         name : {type: String, require: true},
         city : {type: String},
         address: {type: String},
         capacity: {type: Number},
-        cost_per_day: {type: Number},
-        verfies: {type: String},
+        costPerDay: {type: Number},
+        verified: {type: String},
         rating: {type: Number},
     },
     {
@@ -27,7 +27,7 @@ const Lists = mongoose.model('lists',listsSchema)
 
 app.post('/lists', async (req, res) => {
 	try {
-		const Lists = await Lists.create(req.body);
+		const lists = await Lists.create(req.body);
 		return res.status(201).send(lists);
 	} catch (err) {
 		return res.status(500).send(err.message);
@@ -37,7 +37,7 @@ app.post('/lists', async (req, res) => {
 
 
 app.get('/lists', async (req, res) => {
-	// thennable => proper then
+
 	try {
 		const lists = await Lists.find().lean().exec();
 		return res.send(lists);
@@ -45,17 +45,6 @@ app.get('/lists', async (req, res) => {
 		return res.status(500).send(err.message);
 	}
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
