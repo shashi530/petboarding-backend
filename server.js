@@ -6,7 +6,6 @@ const port = 8080;
 
 const connect = require("./config/connect")
 
-
 const listsSchema = new mongoose.Schema(
     {
         id : {type: Number, required: true, unique: true},
