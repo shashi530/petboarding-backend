@@ -1,51 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const app = express();
+const app = express()
+
+const listController = require("./controllers/lists.controller")
+
+app.use(express.json());
 
 const port = 8080;
-
 const connect = require("./config/connect")
 
-const listsSchema = new mongoose.Schema(
-    {
-        id: {type: Number, required: true, unique: true },
-        name : {type: String, require: true},
-        city : {type: String},
-        address: {type: String},
-        capacity: {type: Number},
-        costPerDay: {type: Number},
-        verified: {type: String},
-        rating: {type: Number},
-    },
-    {
-        versionKey: false,
-		timestamps: true,
-    }
-);
 
-const Lists = mongoose.model('lists',listsSchema)
-
-app.post('/lists', async (req, res) => {
-	try {
-		const lists = await Lists.create(req.body);
-		return res.status(201).send(lists);
-	} catch (err) {
-		return res.status(500).send(err.message);
-	}
-});
-
-
-
-app.get('/lists', async (req, res) => {
-
-	try {
-		const lists = await Lists.find().lean().exec();
-		return res.send(lists);
-	} catch (err) {
-		return res.status(500).send(err.message);
-	}
-});
-
+app.use("/lists",listController)
 
 
 app.listen(port, async(req, res) => {
