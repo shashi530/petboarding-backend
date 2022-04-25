@@ -22,4 +22,15 @@ router.get('', async (req, res) => {
 	}
 });
 
+router.get('/:id', async (req, res) => {
+	try {
+		const list = await Lists.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+        }).lean().exec();
+		return res.send(list);
+	} catch (err) {
+		return res.status(500).send(err.message);
+	}
+});
+
 module.exports = router;

@@ -13,6 +13,13 @@ const listsSchema = new mongoose.Schema(
         Cost_per_day: {type: Number, required: false},
         Verified: {type: String, required: true},
         Rating: {type: Number, required: true},
+        Summary: {type: String},
+        Types_of_pets: [{type:String}],
+        Pet_size: [{type:String}],
+        Walks:{type:Number},
+        Toh:{type:String},
+        Area_size:{type:String},
+        ET:{type:String}
     },
     {
         versionKey: false,
