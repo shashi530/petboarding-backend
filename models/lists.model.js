@@ -1,8 +1,6 @@
 
 const mongoose = require("mongoose");
 
-
-
 const listsSchema = new mongoose.Schema(
     {
         id: {type: Number, required: true, unique:true},
@@ -16,10 +14,12 @@ const listsSchema = new mongoose.Schema(
         Summary: {type: String},
         Types_of_pets: [{type:String}],
         Pet_size: [{type:String}],
+        Potty_breaks:{type:Number},
         Walks:{type:Number},
         Toh:{type:String},
         Area_size:{type:String},
-        ET:{type:String}
+        ET:{type:String},
+        Image:{type:String, required: true}
     },
     {
         versionKey: false,
